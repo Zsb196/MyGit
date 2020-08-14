@@ -1,0 +1,35 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /springeureka
+
+spring:
+  application:
+    name: springcloud-eureka
+  datasource: # 数据源
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    driver-class-name: oracle.jdbc.OracleDriver
+    username: zsb
+    password: 123
+  messages:
+    encoding: UTF-8
+  resources: # 静态资源路径
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,classpath:/templates/
+  thymeleaf:
+    cache: false  # 使用模板缓存
+    suffix: .html
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    mode: HTML5
+eureka:
+  instance:
+    # 域名
+    hostname: localhost
+  # 客户端
+  client:
+    # 禁用注册客户端：Eureka注册中心既可以作为服务端又可以作为客户端，默认会自动注册客户端,不注册客户端，避免自己注册自己
+    registerWithEureka: false
+    fetchRegistry: false
+    # 注册中心路径
+    service-url:
+      defalutZone: http://${eureka.instance.hostname}:${server.port}/eureka
